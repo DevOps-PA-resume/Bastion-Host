@@ -1,0 +1,8 @@
+---
+- name: Setup full web server
+  hosts: bastion
+  become: yes
+
+  roles:
+    - { role: base, tags: ["base"] }
+    - { role: ssh, tags: ["ssh"] }

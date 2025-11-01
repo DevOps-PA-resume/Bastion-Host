@@ -1,0 +1,17 @@
+---
+- name: Ensure .ssh directory exists
+  become: yes
+  file:
+    path: /home/ubuntu/.ssh
+    state: directory
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: Add public SSH key
+  become: yes
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', 'id_ed25519_test_1.pub') }}"
+
