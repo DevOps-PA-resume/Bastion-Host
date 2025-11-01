@@ -1,8 +1,11 @@
 ---
 - name: Setup full web server
   hosts: bastion
+  collections:
+    - ansible.posix
   become: yes
 
   roles:
     - { role: base, tags: ["base"] }
     - { role: ssh, tags: ["ssh"] }
+    - { role: figlet, tags: ["figlet"] }

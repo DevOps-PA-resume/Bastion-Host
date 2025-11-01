@@ -1,0 +1,16 @@
+---
+- name: Create SSH banner
+  shell: "figlet BASTION > /etc/ssh/banner"
+  args:
+    creates: /etc/ssh/banner
+
+- name: Enable banner in sshd_config
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^Banner'
+    line: 'Banner /etc/ssh/banner'
+
+- name: Restart SSH
+  service:
+    name: ssh
+    state: restarted
